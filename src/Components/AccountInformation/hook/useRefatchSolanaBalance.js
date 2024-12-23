@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useState, useEffect } from 'react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
-export const BalanceDisplay = () => {
+export const  useRefatchSolanaBalance = (connection, publicKey) => {
   const [balance, setBalance] = useState(0);
-  const { connection } = useConnection();
-  const { publicKey } = useWallet();
 
   useEffect(() => {
     const updateBalance = async () => {
-      if (!connection || !publicKey) {
-        console.error('Wallet not connected or connection unavailable');
-        return;
-      }
-
       try {
         connection.onAccountChange(
           publicKey,
@@ -36,13 +28,7 @@ export const BalanceDisplay = () => {
     };
 
     updateBalance();
-  }, [connection, publicKey]);
+  }, [connection, publicKey, setBalance]);
 
-  return (
-    <div>
-      <p className='font-xl font-bold my-5'>
-        {publicKey ? `Balance: ${balance} SOL` : ''}
-      </p>
-    </div>
-  );
+  return balance;
 };
