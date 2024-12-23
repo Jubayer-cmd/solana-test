@@ -1,16 +1,14 @@
 import React from 'react';
-import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useRefatchSolanaBalance } from './hook/useRefatchSolanaBalance';
+import { PublicKey } from '@solana/web3.js';
 
 export const BalanceDisplay = () => {
-  const { connection } = useConnection();
-  const { publicKey } = useWallet();
-  const balance = useRefatchSolanaBalance(connection, publicKey);
+  const balance = useRefatchSolanaBalance();
 
   return (
     <div>
       <p className='font-xl font-bold my-5'>
-        {publicKey ? `Balance: ${balance} SOL` : 'Connect your wallet to view balance'}
+        {PublicKey ? `Balance: ${balance} SOL` : 'Connect your wallet to view balance'}
       </p>
     </div>
   );

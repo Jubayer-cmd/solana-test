@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
-export const  useRefatchSolanaBalance = (connection, publicKey) => {
+export const  useRefatchSolanaBalance = () => {
+    const { connection } = useConnection();
+    const { publicKey } = useWallet();
   const [balance, setBalance] = useState(0);
 
   useEffect(() => {

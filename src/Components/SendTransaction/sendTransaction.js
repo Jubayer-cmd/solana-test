@@ -1,10 +1,9 @@
 'use client';
-
 import React from 'react';
 import { useSendSol } from './hooks/useSendSol';
 import { TransactionSignature } from './components/TransactionSignature';
 
-const SendSolComponent = () => {
+const SendTransaction = () => {
   const { sendSol, transactionLink, recipientRef, amountRef } = useSendSol();
 
   return (
@@ -39,4 +38,4 @@ const SendSolComponent = () => {
   );
 };
 
-export default SendSolComponent;
+export default SendTransaction;
